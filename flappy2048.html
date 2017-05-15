@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flappy2048</title>
+    <!--公共-->
+    <script src="js/lib/util.js"></script>
+    <script src="js/lib/e.js"></script>
+    <script src="js/lib/jquery.min.js"></script>
+    <!--角色-->
+    <script src="js/roles/background.js"></script>
+    <script src="js/roles/pillar.js"></script>
+    <script src="js/roles/land.js"></script>
+    <script src="js/roles/diamond.js"></script>
+    <script src="js/roles/number_d.js"></script>
+
+    <script src="./js/flappy2048.js"></script>
+
+    <style>
+        body{
+            position: relative;
+        }
+        .black{
+            width: 900px;
+            height: 500px;
+            background-color: black;
+            position: absolute;
+            z-index: 10;
+            top: 0;
+            background:url(./img/0.jpg) no-repeat;
+        }
+        button{
+            position: absolute;
+            top: 73%;
+            left: 50%;
+            margin-left: -99px;
+            margin-top: -25px;
+            width: 170px;
+            height: 71px;
+            border-radius: 5px;
+            background-color: #ccc;
+            display: none;
+            border:none;
+        }
+        .active{
+            display: block;
+        }
+		.re{
+			width: 900px;
+            height: 500px;
+            background-color: black;
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            opacity: 0.5;
+		}
+        .score{
+            position: absolute;
+            top:10px;
+            left: 10px;
+        }
+        span{
+            position: absolute;
+            top: 10px;
+            left: 860px;
+        }
+        img{
+            display: none;
+            width: 20px;
+            height: 20px;
+        }
+        .music{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div class="black">
+    <!--<span class="score">分数：<i></i></span>-->
+    <span>
+        <img src="./img/1.png" alt="音量" class="music"/>
+        <img src="./img/2.png" alt="静音"/>
+    </span>
+    <button type="button" class="active">START</button>
+    <button type="button">RESTART</button>
+</div>
+<section id="flappy-bird">
+    <audio src="mp3/00.mp3" autoplay loop></audio>
+</section>
+
+    <script>
+        var score=0;
+        var btn= document.getElementsByTagName('button');
+        var flaB = new Flappy2048('body');
+        flaB.run();
+        $('img').eq(0).on('click',function(){
+            $('img').toggleClass('music');
+            $('audio').remove();
+        });
+        $('img').eq(1).on('click',function(){
+            $('img').toggleClass('music');
+            $('section').html('<audio src="mp3/00.mp3" autoplay loop></audio>');
+        });
+
+
+
+        
+    </script>
+
+</body>
+</html>	
